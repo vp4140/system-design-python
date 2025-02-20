@@ -9,8 +9,6 @@ setweather
 oberver = update()
 
 """
-from parso.python.tree import String
-
 from abc import ABC,abstractmethod
 
 class Observer(ABC):

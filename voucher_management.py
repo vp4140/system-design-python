@@ -34,7 +34,8 @@ class VocherManagement:
         return list_id
     def use_Voucher(self,vocher_id):
         for ele in self.voucher_list:
-            if self.voucher_list
+            # if self.voucher_list
+                pass
 
 
 
