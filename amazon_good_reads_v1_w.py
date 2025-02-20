@@ -3,14 +3,27 @@
 Design GoodReads.
 Users should be able to get a list of their books
 Users should be able to get top K list of their books that their friends have read.
-Users should be able to get top K list of books that their network has read. i.e. in a graph like manner go thru all the friend links and get the top books from this
+Users should be able to get top K list of books that their network has read.
+i.e. in a graph like manner go thru all the friend links and get the top books from this
 """
 import heapq
 from collections import deque
 
 from abc import ABC, abstractmethod
 
+class Book:
+    def __init__(self, bookId, title, author, rating,reads=0):
+        self.bookId = bookId
+        self.title = title
+        self.author = author
+        self.rating = rating
+        self.reads = reads
+    def __repr__(self):
+        return f"Book Id: {self.bookId}, Title: {self.title}, Author: {self.author}, Rating: {self.rating}, Reads: {self.reads}"
+
+
 class ReadingStrategy(ABC):
+    @abstractmethod
     def getTopBooks(self,books):
         pass
 
@@ -48,11 +61,11 @@ class User:
         self.friendMap[friend.userId] = friend.books
 
     def gettopKBooksAmongFreinds(self,k,strategy:ReadingStrategy ):
-        minHeapBooks = []
+        arr = []
         for friend in self.friends:
             for book in friend.books:
-                minHeapBooks.append(book)
-        return strategy.getTopBooks(minHeapBooks)[:k]
+                arr.append(book)
+        return strategy.getTopBooks(arr)[:k]
 
 
     def gettopKBooksNetwork(self,k,strategy:ReadingStrategy):
@@ -80,15 +93,6 @@ class User:
 
 
 
-class Book:
-    def __init__(self, bookId, title, author, rating,reads=0):
-        self.bookId = bookId
-        self.title = title
-        self.author = author
-        self.rating = rating
-        self.reads = reads
-    def __repr__(self):
-        return f"Book Id: {self.bookId}, Title: {self.title}, Author: {self.author}, Rating: {self.rating}, Reads: {self.reads}"
 
 if __name__ == "__main__":
     Book1 = Book(1,"California","Rahul",5)

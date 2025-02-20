@@ -1,7 +1,4 @@
-
 from enum import Enum
-from random import random
-
 
 class VehicleType(Enum):
     CAR = 1

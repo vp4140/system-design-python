@@ -28,7 +28,7 @@ class FileType(Filter):
 class File_system:
     def __init__(self):
         self.filter = []
-    def addFilter(self):
+    def addFilter(self,filter):
         self.filter.append(filter)
 
     def applyORFilter(self,root):
