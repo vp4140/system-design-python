@@ -23,6 +23,7 @@ class ISet(ABC):
         """Return an iterator over non-expired elements."""
         pass
 
+
     @abstractmethod
     def __len__(self):
         """Return the number of non-expired elements."""
